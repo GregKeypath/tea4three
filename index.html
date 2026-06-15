@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tea for 3 — Sign Up</title>
+  <style>
+    :root {
+      --cream:        #FFF8F0;
+      --navy:         #1C2B4A;
+      --navy-hover:   #2a3f6a;
+      --navy-light:   #EBF0F8;
+      --orange:       #FF6B35;
+      --orange-hover: #e05a28;
+      --orange-light: #FFF0E8;
+      --teal:         #0D9488;
+      --teal-light:   #ECFAF8;
+      --purple:       #7C3AED;
+      --purple-light: #F5F0FF;
+      --yellow:       #F59E0B;
+      --yellow-light: #FFFBEB;
+      --green:        #059669;
+      --green-light:  #ECFDF5;
+      --red:          #DC2626;
+      --red-light:    #FEF2F2;
+      --text:         #1C2B4A;
+      --text-muted:   #6B7280;
+      --border:       #E8E0D8;
+      --white:        #FFFFFF;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* ---- Header ---- */
+    .site-header {
+      background: var(--navy);
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-logo {
+      color: rgba(255,255,255,0.85);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .quarter-pill {
+      background: var(--orange);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 5px 13px;
+      border-radius: 99px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ---- Hero ---- */
+    .hero {
+      background: var(--navy);
+      color: white;
+      text-align: center;
+      padding: 64px 24px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Floating background coffee cups */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-bg span {
+      position: absolute;
+      opacity: 0.07;
+      animation: float ease-in-out infinite;
+      user-select: none;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0px) rotate(-6deg); }
+      50%      { transform: translateY(-18px) rotate(6deg); }
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-emoji-wrap {
+      display: inline-block;
+      font-size: 68px;
+      margin-bottom: 20px;
+      animation: bob 4s ease-in-out infinite;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.3));
+    }
+    @keyframes bob {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      margin-bottom: 14px;
+      line-height: 1.1;
+    }
+    .hero-tagline {
+      font-size: 17px;
+      opacity: 0.78;
+      max-width: 480px;
+      margin: 0 auto 32px;
+      line-height: 1.75;
+    }
+
+    .hero-pills {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .hero-pill {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 99px;
+      padding: 7px 16px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .hero-pill strong { font-weight: 700; }
+
+    /* ---- Wave divider ---- */
+    .wave-top {
+      display: block;
+      width: 100%;
+      height: 48px;
+      background: var(--navy);
+      flex-shrink: 0;
+    }
+    .wave-top svg { display: block; }
+
+    /* ---- How it works ---- */
+    .how-section {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 48px 24px 16px;
+    }
+    .section-label {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .step {
+      border-radius: 20px;
+      padding: 26px 20px 22px;
+      text-align: center;
+      border: 2px solid transparent;
+      transition: transform 0.2s;
+    }
+    .step:hover { transform: translateY(-3px); }
+
+    .step:nth-child(1) { background: var(--orange-light);  border-color: #FFD0BC; }
+    .step:nth-child(2) { background: var(--teal-light);    border-color: #99DDD9; }
+    .step:nth-child(3) { background: var(--purple-light);  border-color: #C4ADFC; }
+
+    .step-circle {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      font-size: 14px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
+      color: white;
+    }
+    .step:nth-child(1) .step-circle { background: var(--orange); }
+    .step:nth-child(2) .step-circle { background: var(--teal); }
+    .step:nth-child(3) .step-circle { background: var(--purple); }
+
+    .step-icon { font-size: 32px; margin-bottom: 10px; }
+    .step h3 { font-size: 15px; font-weight: 800; margin-bottom: 5px; color: var(--text); }
+    .step p  { font-size: 13px; color: var(--text-muted); line-height: 1.55; }
+
+    /* ---- Form outer ---- */
+    .form-outer {
+      max-width: 600px;
+      margin: 40px auto 56px;
+      padding: 0 20px;
+    }
+
+    /* ---- Form card ---- */
+    .form-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 0;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.04), 0 16px 48px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .form-card-top {
+      background: linear-gradient(135deg, var(--orange) 0%, #FF9A5C 100%);
+      padding: 28px 36px 24px;
+      color: white;
+    }
+    .form-card-top h2 {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 4px;
+      letter-spacing: -0.02em;
+    }
+    .form-card-top p {
+      font-size: 14px;
+      opacity: 0.88;
+    }
+
+    .form-card-body { padding: 32px 36px 36px; }
+
+    .deadline-notice {
+      background: var(--yellow-light);
+      border: 1.5px solid #FCD34D;
+      border-radius: 12px;
+      padding: 11px 15px;
+      font-size: 13px;
+      color: #92400E;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-weight: 500;
+    }
+
+    /* ---- Form fields ---- */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .form-group { margin-bottom: 18px; }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 7px;
+    }
+    .req { color: var(--orange); margin-left: 2px; }
+    .opt { font-weight: 400; color: var(--text-muted); font-size: 12px; }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--text);
+      background: var(--cream);
+      transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    input::placeholder, textarea::placeholder { color: #B0A8A0; }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--orange);
+      background: var(--white);
+      box-shadow: 0 0 0 4px var(--orange-light);
+    }
+    input.is-error, select.is-error, textarea.is-error {
+      border-color: var(--red);
+      box-shadow: 0 0 0 4px var(--red-light);
+    }
+
+    select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+    }
+
+    textarea { resize: vertical; min-height: 82px; }
+
+    .field-error {
+      font-size: 12px;
+      color: var(--red);
+      margin-top: 5px;
+      display: none;
+      font-weight: 500;
+    }
+    .field-error.show { display: block; }
+
+    .form-divider {
+      border: none;
+      border-top: 2px dashed var(--border);
+      margin: 22px 0;
+    }
+
+    /* ---- Submit ---- */
+    .btn-submit {
+      width: 100%;
+      padding: 15px 20px;
+      background: var(--orange);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 800;
+      font-family: inherit;
+      cursor: pointer;
+      letter-spacing: 0.01em;
+      transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(255, 107, 53, 0.35);
+    }
+    .btn-submit:hover:not(:disabled) {
+      background: var(--orange-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.45);
+    }
+    .btn-submit:active:not(:disabled) { transform: translateY(0); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; box-shadow: none; }
+
+    .spinner {
+      width: 18px; height: 18px;
+      border: 2.5px solid rgba(255,255,255,0.35);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.65s linear infinite;
+      display: none;
+      flex-shrink: 0;
+    }
+    .btn-submit.loading .spinner { display: block; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .privacy-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 14px;
+      line-height: 1.6;
+    }
+    .privacy-note a { color: var(--text-muted); }
+
+    /* ---- Success card ---- */
+    .success-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 52px 36px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.04), 0 16px 48px rgba(0,0,0,0.1);
+      text-align: center;
+      display: none;
+    }
+    .success-card.show { display: block; }
+    .success-icon {
+      font-size: 60px;
+      display: block;
+      margin-bottom: 20px;
+      animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes pop {
+      0%   { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1);   opacity: 1; }
+    }
+    .success-card h2 {
+      font-size: 26px;
+      font-weight: 900;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+    .success-card .lead {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 400px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .success-card .lead + .lead { margin-top: 10px; }
+
+    .next-steps {
+      background: var(--cream);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 22px;
+      margin-top: 28px;
+      text-align: left;
+    }
+    .next-steps-title {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .next-step-item {
+      font-size: 13px;
+      color: var(--text);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .next-step-item:last-child { margin-bottom: 0; }
+
+    /* ---- Footer ---- */
+    footer {
+      text-align: center;
+      padding: 20px 24px 36px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    footer a { color: var(--text-muted); }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 32px; }
+      .hero-tagline { font-size: 15px; }
+      .hero-pills { flex-direction: column; align-items: center; gap: 8px; }
+      .steps { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .form-card-top { padding: 22px 22px 20px; }
+      .form-card-body { padding: 22px 22px 28px; }
+      .success-card { padding: 36px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!--
+==========================================================================
+  TEA FOR 3 — SIGN-UP PORTAL  |  Keypath Education Culture Club
+
+  SETUP (one-time, ~5 minutes):
+  1. Go to https://formspree.io — create a free account
+  2. Click "New Form", name it (e.g. "Tea for 3 Q3 2026")
+  3. Set the notification email to your Culture Club address
+  4. Copy the endpoint URL (looks like: https://formspree.io/f/xxxxxxxx)
+  5. Paste it into CONFIG.formEndpoint below (replace YOUR_FORM_ID)
+
+  EACH QUARTER — only update CONFIG below:
+  · quarter        e.g. "Q3 2026"
+  · deadline       sign-up closing date
+  · lastRoundCount how many joined last time (social proof)
+  · formEndpoint   your Formspree URL
+==========================================================================
+-->
+<script>
+  const CONFIG = {
+    quarter:        "Q3 2026",
+    deadline:       "Friday, 4 July 2026",
+    lastRoundCount: "69",
+    formEndpoint:   "https://formspree.io/f/YOUR_FORM_ID",
+    contactEmail:   "cultureclub@keypathedu.com.au"
+  };
+</script>
+
+<!-- ==================== HEADER ==================== -->
+<header class="site-header">
+  <span class="site-logo">Keypath Education</span>
+  <span class="quarter-pill" id="js-quarter-pill"></span>
+</header>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+
+  <!-- Floating background cups (decorative, aria-hidden) -->
+  <div class="hero-bg" aria-hidden="true">
+    <span style="left:4%;top:15%;font-size:72px;animation-duration:7s;animation-delay:0s">☕</span>
+    <span style="left:88%;top:8%;font-size:48px;animation-duration:9s;animation-delay:-3s">☕</span>
+    <span style="left:75%;top:65%;font-size:56px;animation-duration:8s;animation-delay:-1s">☕</span>
+    <span style="left:15%;top:70%;font-size:40px;animation-duration:11s;animation-delay:-5s">☕</span>
+    <span style="left:50%;top:5%;font-size:36px;animation-duration:10s;animation-delay:-7s">☕</span>
+    <span style="left:93%;top:45%;font-size:44px;animation-duration:6s;animation-delay:-2s">☕</span>
+    <span style="left:2%;top:50%;font-size:52px;animation-duration:12s;animation-delay:-4s">☕</span>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-emoji-wrap" aria-hidden="true">☕</div>
+    <h1>Tea for 3</h1>
+    <p class="hero-tagline">
+      15 minutes, a hot drink, and two Keypathers you've never properly met.
+      No agenda. No output. Just a genuinely good chat.
+    </p>
+    <div class="hero-pills">
+      <div class="hero-pill">🌏 All APAC staff welcome</div>
+      <div class="hero-pill">⏱ Only <strong>15–20 mins</strong> per quarter</div>
+      <div class="hero-pill">👥 <strong id="js-last-count"></strong> joined last round</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- Wave divider -->
+<div style="background:var(--navy);line-height:0">
+  <svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px">
+    <path d="M0,32 C360,56 1080,0 1440,28 L1440,0 L0,0 Z" fill="#FFF8F0"/>
+  </svg>
+</div>
+
+<!-- ==================== HOW IT WORKS ==================== -->
+<section class="how-section">
+  <p class="section-label">How it works</p>
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-icon">✍️</div>
+      <div class="step-circle">1</div>
+      <h3>Sign up below</h3>
+      <p>Takes under a minute — just your name, team, and when you're roughly free.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-icon">🎲</div>
+      <div class="step-circle">2</div>
+      <h3>Get matched</h3>
+      <p>After sign-ups close, Culture Club randomly pairs you with two people from different teams.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-icon">☕</div>
+      <div class="step-circle">3</div>
+      <h3>Have a catch-up</h3>
+      <p>Your Group Leader books a quick Teams call. We'll send fun conversation starters too.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== FORM ==================== -->
+<div class="form-outer">
+
+  <div class="form-card" id="js-form-card">
+
+    <div class="form-card-top">
+      <h2>Count me in! ☕</h2>
+      <p>Fill in your details — takes less than a minute.</p>
+    </div>
+
+    <div class="form-card-body">
+
+      <div class="deadline-notice">
+        <span>📅</span>
+        <span>Sign-ups close <strong id="js-deadline"></strong></span>
+      </div>
+
+      <form id="js-form" novalidate>
+
+        <input type="hidden" name="quarter"  id="js-hidden-quarter">
+        <input type="hidden" name="_subject" id="js-hidden-subject">
+        <input type="hidden" name="_replyto" id="js-replyto">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First name <span class="req">*</span></label>
+            <input type="text" id="firstName" name="firstName" placeholder="Sarah" autocomplete="given-name">
+            <div class="field-error" id="err-firstName">Please enter your first name.</div>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last name <span class="req">*</span></label>
+            <input type="text" id="lastName" name="lastName" placeholder="Chen" autocomplete="family-name">
+            <div class="field-error" id="err-lastName">Please enter your last name.</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Work email <span class="req">*</span></label>
+          <input type="email" id="email" name="email" placeholder="name@keypathedu.com.au" autocomplete="email">
+          <div class="field-error" id="err-email">Please enter a valid email address.</div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="department">Team / Department <span class="req">*</span></label>
+            <select id="department" name="department">
+              <option value="">Select your team…</option>
+              <optgroup label="Student Success">
+                <option>Student Success — JCU Online</option>
+                <option>Student Success — ECU</option>
+                <option>Student Success — VU</option>
+                <option>Student Success — UTS Online</option>
+                <option>Student Success — UNSW Online</option>
+                <option>Student Success — UC</option>
+                <option>Student Success — SCU SEA</option>
+                <option>Student Success — General</option>
+              </optgroup>
+              <optgroup label="Admissions">
+                <option>Admissions — BU1</option>
+                <option>Admissions — BU2</option>
+                <option>Admissions — BU3</option>
+              </optgroup>
+              <optgroup label="Marketing &amp; Content">
+                <option>Marketing — Australia</option>
+                <option>Marketing — SEA</option>
+                <option>Content / Marketing</option>
+              </optgroup>
+              <optgroup label="Technology">
+                <option>SDIT</option>
+                <option>IT / Product Management</option>
+                <option>Software Engineering</option>
+                <option>Product</option>
+              </optgroup>
+              <optgroup label="People &amp; Culture">
+                <option>People &amp; Culture</option>
+                <option>Talent / Recruitment</option>
+                <option>Learning Design</option>
+              </optgroup>
+              <optgroup label="Business &amp; Operations">
+                <option>Business Development / Marketplaces</option>
+                <option>Account Management</option>
+                <option>Finance / Accounts</option>
+                <option>Strategy &amp; Insights</option>
+                <option>WFM / Insights</option>
+                <option>Placement</option>
+                <option>Student Operations</option>
+                <option>Launch / Project Management</option>
+              </optgroup>
+              <optgroup label="Leadership">
+                <option>Executive / Leadership</option>
+              </optgroup>
+              <option value="Other — please specify in notes">Other</option>
+            </select>
+            <div class="field-error" id="err-department">Please select your team.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="timezone">Location <span class="req">*</span></label>
+            <select id="timezone" name="location">
+              <option value="">Select…</option>
+              <option value="AEST — Eastern Australia">Australia — Eastern (AEST)</option>
+              <option value="AWST — Western Australia">Australia — Western (AWST)</option>
+              <option value="MYT — Malaysia / Singapore">Malaysia / Singapore (MYT)</option>
+              <option value="Other">Other</option>
+            </select>
+            <div class="field-error" id="err-timezone">Please select your location.</div>
+          </div>
+        </div>
+
+        <hr class="form-divider">
+
+        <div class="form-group">
+          <label for="prefTime">
+            Preferred meeting time
+            <span class="opt">— optional, just a hint for your Group Leader</span>
+          </label>
+          <input type="text" id="prefTime" name="preferredTime"
+            placeholder="e.g. Tuesday mornings, not Mondays, genuinely anytime…">
+        </div>
+
+        <div class="form-group">
+          <label for="notes">
+            Anything else? <span class="opt">— optional</span>
+          </label>
+          <textarea id="notes" name="notes"
+            placeholder="e.g. leave dates this quarter, or a preference not to be grouped with your immediate team…"></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" id="js-submit-btn">
+          <div class="spinner" id="js-spinner"></div>
+          <span id="js-btn-label">Sign me up for Tea for 3 ☕</span>
+        </button>
+
+        <p class="privacy-note">
+          Your details are only used to form your group and send you your catch-up info.
+          Questions? <a href="#" id="js-contact-link"></a>
+        </p>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- Success card -->
+  <div class="success-card" id="js-success-card">
+    <span class="success-icon">🎉</span>
+    <h2>You're in for <span id="js-success-quarter"></span>!</h2>
+    <p class="lead">Thanks for signing up. Culture Club will assign your group after sign-ups close on <strong id="js-success-deadline"></strong>.</p>
+    <p class="lead">Keep an eye on your inbox — your Group Leader will reach out with a time to chat once groups are set.</p>
+    <div class="next-steps">
+      <div class="next-steps-title">What happens next</div>
+      <div class="next-step-item"><span>📅</span><span>Sign-ups close and Culture Club assigns groups</span></div>
+      <div class="next-step-item"><span>📧</span><span>Your Group Leader gets everyone's details by email</span></div>
+      <div class="next-step-item"><span>☕</span><span>Group Leader books a 15-min Teams call — enjoy the chat!</span></div>
+      <div class="next-step-item"><span>📝</span><span>A short pulse check arrives near the end of the quarter</span></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  Tea for 3 is a Keypath Education Culture Club initiative ·
+  <a href="#" id="js-footer-email"></a>
+</footer>
+
+<!-- ==================== SCRIPT ==================== -->
+<script>
+  function el(id) { return document.getElementById(id); }
+
+  // Inject config
+  el('js-quarter-pill').textContent   = CONFIG.quarter;
+  el('js-last-count').textContent     = CONFIG.lastRoundCount;
+  el('js-deadline').textContent       = CONFIG.deadline;
+  el('js-hidden-quarter').value       = CONFIG.quarter;
+  el('js-hidden-subject').value       = 'Tea for 3 Sign-Up — ' + CONFIG.quarter;
+  el('js-success-quarter').textContent = CONFIG.quarter;
+  el('js-success-deadline').textContent = CONFIG.deadline;
+
+  const contactLink = el('js-contact-link');
+  contactLink.textContent = CONFIG.contactEmail;
+  contactLink.href = 'mailto:' + CONFIG.contactEmail;
+
+  const footerEmail = el('js-footer-email');
+  footerEmail.textContent = CONFIG.contactEmail;
+  footerEmail.href = 'mailto:' + CONFIG.contactEmail;
+
+  // Validation
+  function setError(fieldId, errId, hasError) {
+    const field = el(fieldId), err = el(errId);
+    field.classList.toggle('is-error', hasError);
+    err.classList.toggle('show', hasError);
+    return !hasError;
+  }
+  function clearErr(fieldId, errId) {
+    ['input','change'].forEach(ev =>
+      el(fieldId).addEventListener(ev, () => setError(fieldId, errId, false))
+    );
+  }
+  ['firstName','lastName','email','department','timezone'].forEach((id, i) => {
+    const errIds = ['err-firstName','err-lastName','err-email','err-department','err-timezone'];
+    clearErr(id, errIds[i]);
+  });
+
+  // Submit
+  el('js-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const vals = {
+      firstName:  el('firstName').value.trim(),
+      lastName:   el('lastName').value.trim(),
+      email:      el('email').value.trim(),
+      department: el('department').value,
+      timezone:   el('timezone').value,
+    };
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(vals.email);
+
+    const valid = [
+      setError('firstName',  'err-firstName',  vals.firstName  === ''),
+      setError('lastName',   'err-lastName',   vals.lastName   === ''),
+      setError('email',      'err-email',      !emailOk),
+      setError('department', 'err-department', vals.department === ''),
+      setError('timezone',   'err-timezone',   vals.timezone   === ''),
+    ].every(Boolean);
+
+    if (!valid) {
+      document.querySelector('.is-error').scrollIntoView({ behavior:'smooth', block:'center' });
+      return;
+    }
+
+    el('js-replyto').value = vals.email;
+
+    const btn = el('js-submit-btn');
+    btn.disabled = true;
+    btn.classList.add('loading');
+    el('js-btn-label').textContent = 'Submitting…';
+
+    try {
+      if (CONFIG.formEndpoint.includes('YOUR_FORM_ID')) throw new Error('not configured');
+
+      const data = new FormData(this);
+      data.append('fullName', vals.firstName + ' ' + vals.lastName);
+
+      const res = await fetch(CONFIG.formEndpoint, {
+        method: 'POST', body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (!res.ok) throw new Error('failed: ' + res.status);
+
+      showSuccess();
+
+    } catch {
+      // mailto fallback
+      const sub  = encodeURIComponent('Tea for 3 Sign-Up — ' + CONFIG.quarter);
+      const body = encodeURIComponent(
+        'Name: '           + vals.firstName + ' ' + vals.lastName + '\n' +
+        'Email: '          + vals.email                            + '\n' +
+        'Department: '     + vals.department                       + '\n' +
+        'Location: '       + vals.timezone                         + '\n' +
+        'Preferred time: ' + el('prefTime').value                  + '\n' +
+        'Notes: '          + el('notes').value
+      );
+      window.location.href = 'mailto:' + CONFIG.contactEmail + '?subject=' + sub + '&body=' + body;
+      btn.disabled = false;
+      btn.classList.remove('loading');
+      el('js-btn-label').textContent = 'Sign me up for Tea for 3 ☕';
+    }
+  });
+
+  function showSuccess() {
+    el('js-form-card').style.display = 'none';
+    el('js-success-card').classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
